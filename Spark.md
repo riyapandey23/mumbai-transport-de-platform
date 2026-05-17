@@ -179,65 +179,60 @@ The image below illustrates Apache Spark as a layered, unified stack where highe
 
 ## 1. Language APIs (Top Layer)
 
-Spark supports multiple programming languages:
+At the very top, the diagram shows support for four major programming languages:
 
 - Python
 - Scala
 - Java
 - R
 
-This allows developers to work with Spark using their preferred language.
+This flexibility allows Data Engineers and Data Scientists to interact with Spark using the language they are most comfortable with, without needing to learn low-level cluster programming.
 
 ---
 
-## 2. Domain-Specific Libraries
+## 2. Domain-Specific Libraries (Blue Layer)
 
-Spark includes built-in libraries for different workloads:
+The four blue boxes represent Spark's built-in libraries that handle specific data workload types:
 
-- **Spark SQL** → Structured data processing
-- **Spark Streaming** → Real-time data processing
-- **Spark MLlib** → Machine learning
-- **Spark GraphX** → Graph and network analysis
-
----
-
-## 3. Core Engine
-
-### Spark Core
-Handles:
-- Task scheduling
-- Memory management
-- Fault tolerance
-
-### RDD API
-Spark’s distributed data structure used for parallel processing.
+- **Spark SQL**: For processing structured data using SQL queries and DataFrames.
+- **Spark Streaming**: For ingesting and processing real-time data streams.
+- **Spark MLlib**: A library of machine learning algorithms for tasks like classification and clustering.
+- **Spark GraphX**: For graph computation and network analysis.
 
 ---
 
-## 4. Deployment Environment
+## 3. The Core Engine (Green Layers)
 
-Spark can run on:
+The foundation of the stack is depicted by the two green bars: Spark Core and the RDD API.
 
-- Docker
-- Kubernetes
-- Amazon EMR
-- Databricks
+- **Spark Core**: This is the underlying execution engine responsible for memory management, task scheduling, and fault recovery.
+- **RDD API**: Sitting directly on top of the core, this exposes the Resilient Distributed Dataset abstraction, which is the fundamental data structure Spark uses to process data in parallel across the cluster.
 
 ---
 
-## 5. Data Sources
+## 4. Deployment Environment (Left Panel)
 
-Spark can connect to:
+The "Environment" section on the left illustrates that Spark is decoupled from the resource manager. It can run in various environments:
 
-- CSV
-- JSON
-- Parquet
-- Hadoop
-- Hive
-- SQL Databases
-- AWS S3
+- Containerized: Using Docker or Kubernetes.
+- Cloud: On services like Amazon EC2, Databricks, Google DataProc.
+- Cluster Managers: Natively on Mesos or OpenStack.
 
-using connectors.
+---
+
+## 5. Data Sources (Bottom Layer)
+
+The bottom section shows Spark's ability to connect to a wide variety of data storage systems. Instead of locking you into a single storage format, it can ingest data from:
+
+- Cloud Storage: ADLS, GCS, AWS S3.
+- Hadoop Ecosystem: HDFS (Hadoop), Hive, and HBase.
+- NoSQL Databases: Cassandra, Elasticsearch, MongoDB, Redis, and DynamoDB.
+- Relational Databases: MySQL, PostgreSQL, Oracle, SQL Server, and Redshift.
+- Flat Files: CSV, JSON, Parquet, Avro, and ORC formats.
+- Streaming Sources: Apache Kafka, Kinesis, and event hubs for real-time data ingestion.
+- Cloud Data Warehouses: Snowflake, BigQuery, and Databricks Delta Lake.
+
+Spark achieves this flexibility through connectors - specialized libraries that enable reading and writing to specific systems. Many are built-in, while others are available through third-party packages that you can add to your Spark application.
 
 ---
 
