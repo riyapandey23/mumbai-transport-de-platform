@@ -20,7 +20,8 @@ A system that:
 - Collects raw ride data (driver, source, destination, fare, status)
 - Cleans and processes it
 - Calculates business metrics like revenue, cancellations, average fare
-- Later stores it in a database, automates it, and streams it in real time
+- Stores it in a database
+- Automates it and streams it in real time
 
 ---
 
@@ -29,13 +30,13 @@ A system that:
 | Phase | Topic | Status |
 |-------|-------|--------|
 | 1 | Environment setup, project structure, load dataset | ✅ Done |
-| 2 | Basic analytics — revenue, cancellations, average fare | ✅ Done |
-| 3 | Data cleaning with Pandas | 🔄 In Progress |
+| 2 | Basic analytics + Data cleaning with Pandas | ✅ Done |
+| 3 | Scale to 1 lakh rows + PostgreSQL + SQLAlchemy | 🔄 In Progress |
 | 4 | API ingestion — fetch live data | ⏳ Upcoming |
-| 5 | PostgreSQL — store data in a database | ⏳ Upcoming |
-| 6 | Airflow — automate the pipeline | ⏳ Upcoming |
-| 7 | Kafka — real-time data streaming | ⏳ Upcoming |
-| 8 | Spark — process data at scale | ⏳ Upcoming |
+| 5 | Apache Spark — big data processing | ⏳ Upcoming |
+| 6 | AWS S3 + RDS — cloud storage and warehouse | ⏳ Upcoming |
+| 7 | Airflow — automate the pipeline | ⏳ Upcoming |
+| 8 | Kafka — real-time data streaming | ⏳ Upcoming |
 
 ---
 
@@ -47,13 +48,18 @@ A system that:
 - Project folder structure created
 - Dataset loaded and verified
 
-**Phase 2 — Basic Analytics**
+**Phase 2 — Analytics + Data Cleaning**
 - Loaded `rides.csv` using Pandas
 - Calculated total rides, completed rides, cancelled rides
-- Calculated total revenue from completed rides only
-- Calculated average fare across all rides
-- Calculated platform profit at 10% of total revenue
-- Output:
+- Calculated total revenue, average fare, platform profit
+- Simulated real world data problems — missing values, duplicates, outliers, inconsistent values
+- Cleaned data using:
+  - `.str.title().str.strip()` — fixed inconsistent ride_status
+  - `.dropna()` and `.fillna(median)` — handled missing values
+  - IQR method — detected and replaced outliers
+  - `.drop_duplicates()` — removed duplicate rows
+- Saved cleaned data to `output/cleaned_rides.csv`
+- Analytics output:
 ```
 === Mumbai Ride Analytics ===
 Total rides: 10
@@ -87,12 +93,15 @@ Platform profit: ₹443.0
 | Tool | Purpose |
 |------|---------|
 | Python 3.11 | Core language |
-| Pandas | Data processing |
+| Pandas | Data processing and cleaning |
 | NumPy | Numerical operations |
 | Matplotlib / Seaborn | Visualization |
-| Scikit-learn | ML pipelines (later) |
 | SQLAlchemy | Database connection |
-| PostgreSQL | Data warehouse (later) |
+| PostgreSQL | Data warehouse |
+| Apache Spark | Big data processing |
+| AWS S3 + RDS | Cloud storage and database |
+| Airflow | Pipeline automation |
+| Kafka | Real-time streaming |
 | Jupyter Notebook | Analysis and exploration |
 
 ---
@@ -105,7 +114,7 @@ Data_Engineering/
 ├── data/               # Raw input files
 ├── scripts/            # ETL pipeline scripts
 ├── notebooks/          # Jupyter notebooks
-├── output/             # Processed results
+├── output/             # Processed and cleaned data
 ├── logs/               # Pipeline logs
 ├── venv/               # Virtual environment
 ├── requirements.txt    # Project dependencies
