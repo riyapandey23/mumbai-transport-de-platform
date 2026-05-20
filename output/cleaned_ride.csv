@@ -1,0 +1,9 @@
+ride_id,driver_name,source,destination,distance_km,fare,ride_status
+101,Amit,Bandra,Andheri,12,320.0,Completed
+110,Rohit,Dadar,Andheri,14,350.0,Completed
+105,Vikram,Andheri,Lower Parel,15,390.0,Completed
+104,Sneha,Thane,Airport,25,420.0,Completed
+102,Priya,Dadar,Powai,18,450.0,Completed
+109,Meera,Bandra,Thane,28,760.0,Completed
+107,Arjun,Navi Mumbai,BKC,30,850.0,Cancelled
+105,Vikram,Andheri,Lower Parel,15,435.0,Completed
