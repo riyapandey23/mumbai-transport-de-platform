@@ -1,3 +1,6 @@
 venv/
 Setup.md
 pythonclass.md
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
