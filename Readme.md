@@ -65,9 +65,9 @@ SQLAlchemy ORM
 PostgreSQL (mumbai_rides database)
 ```
 
-**Database PostgreSQL — rides table in pgAdmin:**📸  
+**Database PostgreSQL — rides table in pgAdmin:** 
 
-> ![Rides table - sample data](assets/pgadmin_rides_sample.png) 
+> 📸 ![Rides table - sample data](assets/pgadmin_rides_sample.png) 
 
 > — `SELECT * FROM public.rides ORDER BY ride_id ASC`  
 > 100,000 ride records successfully loaded into PostgreSQL via SQLAlchemy.
